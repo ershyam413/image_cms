@@ -48,14 +48,13 @@
     </div>
   </div>
 </nav>
-
 <div class="container">
     <div class="row align-items-center">
         <div class="col-md-6">
             <div class="input-group">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button
+                        Please select the Project
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" href="#" onclick="updateInput('Citiplaza')">Citiplaza</a></li>
@@ -70,14 +69,17 @@
     <div class="image-upload-container" id="image1UploadContainer">
         <label for="image1Upload">Image1:</label>
         <input type="file" class="image-upload" id="image1Upload">
+        <button class="btn btn-primary" onclick="uploadImage('image1Upload')">Upload</button>
     </div>
     <div class="image-upload-container" id="image2UploadContainer">
         <label for="image2Upload">Image2:</label>
         <input type="file" class="image-upload" id="image2Upload">
+        <button class="btn btn-primary" onclick="uploadImage('image2Upload')">Upload</button>
     </div>
     <div class="image-upload-container" id="image3UploadContainer">
         <label for="image3Upload">Image3:</label>
         <input type="file" class="image-upload" id="image3Upload">
+        <button class="btn btn-primary" onclick="uploadImage('image3Upload')">Upload</button>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
         <div class="col">
@@ -115,16 +117,35 @@
 <script>
     function updateInput(value) {
         document.getElementById('selectedValue').value = value;
-        // Show or hide cards based on selected value
         document.getElementById('image1').style.display = value === 'Glow Networks' ? 'block' : 'none';
         document.getElementById('image2').style.display = value === 'Citiplaza' ? 'block' : 'none';
         document.getElementById('image3').style.display = value === 'Other' ? 'block' : 'none';
-        // Show or hide message if no selection
         document.getElementById('noSelectionMessage').style.display = !value ? 'block' : 'none';
-        // Show or hide image upload containers
         document.getElementById('image1UploadContainer').style.display = value === 'Glow Networks' ? 'block' : 'none';
         document.getElementById('image2UploadContainer').style.display = value === 'Citiplaza' ? 'block' : 'none';
         document.getElementById('image3UploadContainer').style.display = value === 'Other' ? 'block' : 'none';
+    }
+
+    function uploadImage(inputId) {
+        const fileInput = document.getElementById(inputId);
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/your-upload-api-url', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('File uploaded successfully');
+            } else {
+                console.error('Failed to upload file');
+            }
+        })
+        .catch(error => {
+            console.error('Error uploading file:', error);
+        });
     }
 </script>
 </html>
