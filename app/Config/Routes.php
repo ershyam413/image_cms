@@ -34,6 +34,7 @@ $routes->get('/', 'Login::index');
 $routes->get('/dashboard', 'Dashboard::index',['filter' => 'auth']);
 $routes->get('/add', 'Register::index');
 $routes->get('/logout', 'Logout::index');
+$routes->post('/ImageUpload', 'ImageUploadController/uploadImage');
 
 /**
  * --------------------------------------------------------------------
