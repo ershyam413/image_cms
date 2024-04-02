@@ -17,6 +17,13 @@
         .card {
             display: none;
         }
+        .image-upload-container {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .image-upload {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -60,6 +67,18 @@
             </div>
         </div>
     </div>
+    <div class="image-upload-container" id="image1UploadContainer">
+        <label for="image1Upload">Image1:</label>
+        <input type="file" class="image-upload" id="image1Upload">
+    </div>
+    <div class="image-upload-container" id="image2UploadContainer">
+        <label for="image2Upload">Image2:</label>
+        <input type="file" class="image-upload" id="image2Upload">
+    </div>
+    <div class="image-upload-container" id="image3UploadContainer">
+        <label for="image3Upload">Image3:</label>
+        <input type="file" class="image-upload" id="image3Upload">
+    </div>
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
         <div class="col">
             <div class="card" id="image1">
@@ -102,6 +121,10 @@
         document.getElementById('image3').style.display = value === 'Other' ? 'block' : 'none';
         // Show or hide message if no selection
         document.getElementById('noSelectionMessage').style.display = !value ? 'block' : 'none';
+        // Show or hide image upload containers
+        document.getElementById('image1UploadContainer').style.display = value === 'Glow Networks' ? 'block' : 'none';
+        document.getElementById('image2UploadContainer').style.display = value === 'Citiplaza' ? 'block' : 'none';
+        document.getElementById('image3UploadContainer').style.display = value === 'Other' ? 'block' : 'none';
     }
 </script>
 </html>

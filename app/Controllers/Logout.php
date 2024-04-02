@@ -6,7 +6,4 @@ class Logout extends Controller
 	{
 		return view('welcome_message to logout');
 	}
-
-	//--------------------------------------------------------------------
-
 }
