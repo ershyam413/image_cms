@@ -132,13 +132,14 @@
         const formData = new FormData();
         formData.append('file', file);
 
-        fetch('/your-upload-api-url', {
+        fetch('/ImageUpload', {
             method: 'POST',
             body: formData
         })
         .then(response => {
             if (response.ok) {
                 console.log('File uploaded successfully');
+				fileInput.value = '';
             } else {
                 console.error('Failed to upload file');
             }
